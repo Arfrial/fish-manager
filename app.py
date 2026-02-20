@@ -211,4 +211,4 @@ def delete_catch(id):
     return render_template("confirm_delete.html", catch=catch, id=id)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=10000)
