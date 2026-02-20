@@ -3,10 +3,13 @@ import psycopg2
 from flask import Flask, render_template, request, make_response
 from flask import Flask, render_template, request, make_response, redirect
 from dotenv import load_dotenv
+from flask import flash
+
 
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = "supersecretkey"
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 
@@ -144,6 +147,8 @@ def add_catch():
         cur.close()
         conn.close()
 
+        flash("Catch added successfully!")
+
         return redirect("/")
 
     return render_template("form.html", catch=None)
@@ -178,6 +183,9 @@ def edit_catch(id):
         conn.commit()
         cur.close()
         conn.close()
+
+        flash("Catch updated successfully!")
+
         return redirect("/")
 
     # GET request → load existing record
@@ -199,6 +207,9 @@ def delete_catch(id):
         conn.commit()
         cur.close()
         conn.close()
+
+        flash("Catch removed successfully!")
+
         return redirect("/")
 
     # GET request → show confirmation page
