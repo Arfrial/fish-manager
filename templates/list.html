@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fish Collection Manager</title>
+</head>
+<body>
+    <h1>Fish Collection Manager</h1>
+
+    <form method="get">
+        <input type="text" name="search" placeholder="Search..." value="{{ search }}">
+        <a href="/new">Add New Catch</a>
+        <select name="sort">
+            <option value="date_desc">Date (Newest)</option>
+            <option value="date_asc">Date (Oldest)</option>
+            <option value="species">Species A-Z</option>
+            <option value="weight_desc">Weight High-Low</option>
+        </select>
+        <select name="page_size">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+
+    <p>Total Records: {{ total_records }}</p>
+
+    <ul>
+        {% for catch in catches %}
+            <li>
+                <img src="{{ catch[7] }}" width="120"
+                    onerror="this.src='/static/img/placeholder.png';">
+                <strong>{{ catch[1] }}</strong>
+                - {{ catch[2] }}
+                - {{ catch[3] }}
+                - {{ catch[4] }} lbs
+
+                <br>
+                <a href="/edit/{{ catch[0] }}">Edit</a>
+                <a href="/delete/{{ catch[0] }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        {% if page > 1 %}
+            <a href="?page={{ page - 1 }}&page_size={{ page_size }}">Previous</a>
+        {% endif %}
+        <a href="?page={{ page + 1 }}&page_size={{ page_size }}">Next</a>
+    </div>
+
+</body>
+</html>

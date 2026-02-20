@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stats</title>
+</head>
+<body>
+    <h1>Collection Statistics</h1>
+
+    <p><strong>Total Records:</strong> {{ total_records }}</p>
+    <p><strong>Current Page Size:</strong> {{ page_size }}</p>
+
+    {% if most_common %}
+        <p><strong>Most Common Species:</strong> {{ most_common[0] }} ({{ most_common[1] }} catches)</p>
+    {% endif %}
+
+    <p><strong>Average Weight:</strong> {{ avg_weight }} lbs</p>
+
+    <br>
+    <a href="/">Back to List</a>
+</body>
+</html>
