@@ -1,55 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fish Collection Manager</title>
+    <title>Fish Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .top-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            margin: 10px 0 5px 0;
+        }
+
+        .meta {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #0077cc;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+        }
+
+        .stats {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Fish Collection Manager</h1>
 
-    <form method="get">
-        <input type="text" name="search" placeholder="Search..." value="{{ search }}">
-        <a href="/new">Add New Catch</a>
-        <select name="sort">
-            <option value="date_desc">Date (Newest)</option>
-            <option value="date_asc">Date (Oldest)</option>
-            <option value="species">Species A-Z</option>
-            <option value="weight_desc">Weight High-Low</option>
-        </select>
-        <select name="page_size">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-        </select>
-        <button type="submit">Apply</button>
-    </form>
+<h1>Fish Collection Manager</h1>
 
-    <p>Total Records: {{ total_records }}</p>
+<div class="top-bar">
+    <a href="/new">➕ Add Catch</a> |
+    <a href="/stats">📊 Stats</a>
+</div>
 
-    <ul>
-        {% for catch in catches %}
-            <li>
-                <img src="{{ catch[7] }}" width="120"
-                    onerror="this.src='/static/img/placeholder.png';">
-                <strong>{{ catch[1] }}</strong>
-                - {{ catch[2] }}
-                - {{ catch[3] }}
-                - {{ catch[4] }} lbs
-                - {{ catch[5] }} in
+<div class="cards">
+    {% for catch in catches %}
+        <div class="card">
+            <img src="{{ catch[7] }}" 
+                 onerror="this.src='/static/img/placeholder.png';">
 
-                <br>
+            <h3>{{ catch[1] }}</h3>
+
+            <div class="meta">
+                📍 {{ catch[2] }} <br>
+                📅 {{ catch[3] }} <br>
+                ⚖️ {{ catch[4] }} lbs <br>
+                📏 {{ catch[5] }} in
+            </div>
+
+            <div class="actions">
                 <a href="/edit/{{ catch[0] }}">Edit</a>
                 <a href="/delete/{{ catch[0] }}">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 
-    <div>
-        {% if page > 1 %}
-            <a href="?page={{ page - 1 }}&page_size={{ page_size }}">Previous</a>
-        {% endif %}
-        <a href="?page={{ page + 1 }}&page_size={{ page_size }}">Next</a>
-    </div>
+<div class="stats">
+    <p>Total Records: {{ total_records }}</p>
+</div>
 
 </body>
 </html>
