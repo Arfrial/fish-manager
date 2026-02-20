@@ -63,6 +63,12 @@ def list_catches():
 
     catches = cur.fetchall()
 
+    cur.execute("SELECT AVG(weight_lbs) FROM catches WHERE weight_lbs IS NOT NULL")
+    avg_weight = cur.fetchone()[0] or 0
+
+    cur.execute("SELECT MAX(weight_lbs) FROM catches WHERE weight_lbs IS NOT NULL")
+    max_weight = cur.fetchone()[0] or 0
+
     cur.execute("SELECT COUNT(*) FROM catches;")
     total_records = cur.fetchone()[0]
 
