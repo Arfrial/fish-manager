@@ -63,14 +63,18 @@ def list_catches():
 
     catches = cur.fetchall()
 
-    cur.execute("SELECT AVG(weight_lbs) FROM catches WHERE weight_lbs IS NOT NULL")
-    avg_weight = cur.fetchone()[0] or 0
+    cur.execute("SELECT COALESCE(AVG(weight_lbs), 0) FROM catches")
+    avg_weight = cur.fetchone()[0]
 
-    cur.execute("SELECT MAX(weight_lbs) FROM catches WHERE weight_lbs IS NOT NULL")
-    max_weight = cur.fetchone()[0] or 0
+    cur.execute("SELECT COALESCE(MAX(weight_lbs), 0) FROM catches")
+    max_weight = cur.fetchone()[0]
 
     cur.execute("SELECT COUNT(*) FROM catches;")
     total_records = cur.fetchone()[0]
+
+    # Clean formatting
+    avg_weight = round(float(avg_weight), 2)
+    max_weight = float(max_weight)
 
     cur.close()
     conn.close()
@@ -122,13 +126,17 @@ def stats():
     cur.close()
     conn.close()
 
-    return render_template(
-        "stats.html",
-        total_records=total_records,
-        page_size=page_size,
-        most_common=most_common,
-        avg_weight=avg_weight,
-    )
+    response = make_response(render_template(
+    "list.html",
+    catches=catches,
+    page=page,
+    page_size=page_size,
+    total_records=total_records,
+    search=search,
+    sort=sort,
+    avg_weight=avg_weight,
+    max_weight=max_weight
+))
 
 @app.route("/new", methods=["GET", "POST"])
 def add_catch():
