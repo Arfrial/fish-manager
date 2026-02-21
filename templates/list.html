@@ -137,6 +137,23 @@
         margin-bottom: 12px;
     }
 
+    .notes {
+        margin-top: 10px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover .notes {
+        opacity: 1;
+        max-height: 200px;
+    }
+
     .card h3 {
         margin: 5px 0 10px 0;
         font-size: 1.1rem;
@@ -228,6 +245,11 @@
                 ⚖️ {{ catch[4] }} lbs <br>
                 📏 {{ catch[5] }} in
             </div>
+            {% if catch[6] %}
+            <div class="notes">
+                {{ catch[6] }}
+            </div>
+                {% endif %}
 
             <div class="actions">
                 <a href="/edit/{{ catch[0] }}">Edit</a>
