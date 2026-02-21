@@ -107,7 +107,7 @@ def stats():
 
     # Most common species
     cur.execute("""
-        SELECT species, COUNT(*) 
+        SELECT species, COUNT(*)
         FROM catches
         GROUP BY species
         ORDER BY COUNT(*) DESC
@@ -124,6 +124,18 @@ def stats():
     """)
     avg_weight = cur.fetchone()[0]
 
+    # Biggest fish (heaviest first, then longest)
+    cur.execute("""
+        SELECT species, weight_lbs, length_in, catch_date, image_url
+        FROM catches
+        WHERE weight_lbs IS NOT NULL OR length_in IS NOT NULL
+        ORDER BY
+            COALESCE(weight_lbs, 0) DESC,
+            COALESCE(length_in, 0) DESC
+        LIMIT 1;
+    """)
+    biggest_fish = cur.fetchone()  # can be None if table is empty
+
     cur.close()
     conn.close()
 
@@ -133,6 +145,7 @@ def stats():
         page_size=page_size,
         most_common=most_common,
         avg_weight=avg_weight,
+        biggest_fish=biggest_fish
     )
 
 @app.route("/new", methods=["GET", "POST"])

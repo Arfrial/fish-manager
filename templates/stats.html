@@ -11,7 +11,29 @@
             color: white;
             text-align: center;
         }
+        
+        .biggest-card {
+            margin: 40px auto;
+            padding: 30px;
+            width: 400px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
 
+        .biggest-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .biggest-details p {
+            margin: 6px 0;
+        }
+        
         .card {
             background: rgba(255,255,255,0.1);
             padding: 30px;
@@ -51,6 +73,22 @@
 <div class="card">
     <h3>Most Common Species</h3>
     <p>{{ most_common[0] }}</p>
+</div>
+{% endif %}
+
+{% if biggest_fish %}
+<div class="biggest-card">
+    <h2>🏆 Biggest Catch</h2>
+
+    <img src="{{ biggest_fish[4] }}"
+         onerror="this.src='/static/img/placeholder.png';">
+
+    <div class="biggest-details">
+        <p><strong>Species:</strong> {{ biggest_fish[0] }}</p>
+        <p><strong>Weight:</strong> {{ biggest_fish[1] if biggest_fish[1] else "N/A" }} lbs</p>
+        <p><strong>Length:</strong> {{ biggest_fish[2] if biggest_fish[2] else "N/A" }} in</p>
+        <p><strong>Date:</strong> {{ biggest_fish[3] }}</p>
+    </div>
 </div>
 {% endif %}
 
