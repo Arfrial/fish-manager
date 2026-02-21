@@ -2,20 +2,59 @@
 <html>
 <head>
     <title>Stats</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 20px auto;
+            width: 300px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Collection Statistics</h1>
 
-    <p><strong>Total Records:</strong> {{ total_records }}</p>
-    <p><strong>Current Page Size:</strong> {{ page_size }}</p>
+<h1>Fishing Analytics</h1>
 
-    {% if most_common %}
-        <p><strong>Most Common Species:</strong> {{ most_common[0] }} ({{ most_common[1] }} catches)</p>
-    {% endif %}
+<div class="card">
+    <h3>Total Catches</h3>
+    <p>{{ total_records }}</p>
+</div>
 
-    <p><strong>Average Weight:</strong> {{ avg_weight }} lbs</p>
+<div class="card">
+    <h3>Average Weight</h3>
+    <p>{{ avg_weight }} lbs</p>
+</div>
 
-    <br>
-    <a href="/">Back to List</a>
+{% if most_common %}
+<div class="card">
+    <h3>Most Common Species</h3>
+    <p>{{ most_common[0] }}</p>
+</div>
+{% endif %}
+
+<a href="/">← Back to Collection</a>
+
 </body>
 </html>
