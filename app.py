@@ -114,29 +114,26 @@ def stats():
         LIMIT 1;
     """)
     most_common = cur.fetchone()
+    if most_common is None:
+        most_common = ("N/A", 0)
 
-    # Average weight
+    # Average weight (safe)
     cur.execute("""
-        SELECT ROUND(AVG(weight_lbs), 2)
-        FROM catches
-        WHERE weight_lbs IS NOT NULL;
+        SELECT COALESCE(ROUND(AVG(weight_lbs), 2), 0)
+        FROM catches;
     """)
     avg_weight = cur.fetchone()[0]
 
     cur.close()
     conn.close()
 
-    response = make_response(render_template(
-    "list.html",
-    catches=catches,
-    page=page,
-    page_size=page_size,
-    total_records=total_records,
-    search=search,
-    sort=sort,
-    avg_weight=avg_weight,
-    max_weight=max_weight
-))
+    return render_template(
+        "stats.html",
+        total_records=total_records,
+        page_size=page_size,
+        most_common=most_common,
+        avg_weight=avg_weight,
+    )
 
 @app.route("/new", methods=["GET", "POST"])
 def add_catch():
