@@ -358,16 +358,14 @@
         <!-- Page Size -->
         <label>
             Show
-            <select name="page_size">
-                option value="5" {{ "selected" if page_size == 5 else "" }}>5</option>
+            <select name="page_size" onchange="this.form.submit()">
+                <option value="5" {{ "selected" if page_size == 5 else "" }}>5</option>
                 <option value="10" {{ "selected" if page_size == 10 else "" }}>10</option>
                 <option value="20" {{ "selected" if page_size == 20 else "" }}>20</option>
                 <option value="50" {{ "selected" if page_size == 50 else "" }}>50</option>
             </select>
             per page
         </label>
-
-        <button type="submit">Apply</button>
 
     </form>
 
