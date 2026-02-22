@@ -338,20 +338,19 @@
 </div>
 
 <div class="controls">
-    <form method="get" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <form id="filterForm" method="get" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
 
         <!-- Search Bar -->
-        <input type="text" 
+        <input id="searchInput" type="text" 
             name="search"
             placeholder="Search species or location..."
             value="{{ search if search else '' }}">
 
         <!-- Sort Dropdown -->
-        <select name="sort">
-            <option value="">Sort By</option>
+        <select name="sort" onchange="this.form.submit()">
             <option value="date_desc" {{ "selected" if sort == "date_desc" else "" }}>Newest First</option>
             <option value="date_asc" {{ "selected" if sort == "date_asc" else "" }}>Oldest First</option>
-            <option value="species_asc" {{ "selected" if sort == "species_asc" else "" }}>Species A-Z</option>
+            <option value="species" {{ "selected" if sort == "species" else "" }}>Species A-Z</option>
             <option value="weight_desc" {{ "selected" if sort == "weight_desc" else "" }}>Heaviest First</option>
         </select>
 
