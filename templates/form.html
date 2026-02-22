@@ -3,82 +3,125 @@
 <head>
     <title>{{ "Edit Catch" if catch else "Add Catch" }}</title>
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 40px;
-            background: radial-gradient(circle at 20% 30%, #4facfe 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, #00c6ff 0%, transparent 40%),
-                        linear-gradient(135deg, #1e3c72, #2a5298);
-            background-attachment: fixed;
-            display: flex;
-            justify-content: center;
-        }
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 40px 20px;
+        background: radial-gradient(circle at 20% 30%, #4facfe 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, #00c6ff 0%, transparent 40%),
+                    linear-gradient(135deg, #1e3c72, #2a5298);
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: white;
+    }
 
+    .form-card {
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(18px);
+        padding: 40px;
+        border-radius: 22px;
+        width: 520px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        transition: transform 0.2s ease;
+    }
+
+    .form-card:hover {
+        transform: translateY(-4px);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    label {
+        font-weight: 600;
+        display: block;
+        margin-top: 18px;
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: none;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        font-size: 0.95rem;
+        transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(255,255,255,0.6);
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        background: rgba(255,255,255,0.3);
+        box-shadow: 0 0 0 2px rgba(174,233,255,0.6);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 90px;
+    }
+
+    .button-group {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    button, .secondary {
+        flex: 1;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .primary {
+        background: linear-gradient(135deg, #4facfe, #00c6ff);
+        color: white;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .secondary {
+        background: rgba(255,255,255,0.15);
+        color: white;
+    }
+
+    .secondary:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    @media (max-width: 600px) {
         .form-card {
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            width: 500px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        label {
-            font-weight: 600;
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
-        }
-
-        input, textarea {
             width: 100%;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 0.95rem;
+            padding: 30px;
         }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .button-group {
-            margin-top: 25px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        button {
-            padding: 10px 18px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .primary {
-            background: #0077cc;
-            color: white;
-        }
-
-        .primary:hover {
-            background: #005fa3;
-        }
-
-        .secondary {
-            background: #eee;
-        }
-
-        .secondary:hover {
-            background: #ddd;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
