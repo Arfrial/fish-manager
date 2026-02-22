@@ -165,6 +165,25 @@
     }
     }
 
+    .pagination {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        padding: 8px 14px;
+        margin: 0 8px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.15);
+        color: white;
+        font-weight: 500;
+    }
+
+    .pagination a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
     /* GRID */
     .cards {
         display: grid;
@@ -401,6 +420,16 @@
             </div>
         </div>
     {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if page > 1 %}
+        <a href="?page={{ page - 1 }}&search={{ search }}&sort={{ sort }}&page_size={{ page_size }}">← Previous</a>
+    {% endif %}
+
+    {% if page * page_size < total_records %}
+        <a href="?page={{ page + 1 }}&search={{ search }}&sort={{ sort }}&page_size={{ page_size }}">Next →</a>
+    {% endif %}
 </div>
 
 <script>
