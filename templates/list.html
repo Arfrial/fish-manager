@@ -86,6 +86,11 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
+        .controls p {
+        color: rgba(255,255,255,0.9);
+        font-weight: 500;
+    }
+
     .controls label {
         font-weight: 500;
         color: white;
@@ -221,17 +226,37 @@
 
     .actions {
         margin-top: auto;
+        display: flex;
+        gap: 10px;
     }
 
     .actions a {
         text-decoration: none;
         font-weight: 600;
-        color: #0077cc;
-        margin-right: 10px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
     }
 
-    .actions a:hover {
-        text-decoration: underline;
+    /* Edit Button */
+    .actions a:first-child {
+        background: rgba(255,255,255,0.15);
+        color: white;
+    }
+
+    .actions a:first-child:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    /* Delete Button */
+    .actions a:last-child {
+        background: rgba(255, 80, 80, 0.85);
+        color: white;
+    }
+
+    .actions a:last-child:hover {
+        background: rgba(255, 50, 50, 1);
     }
 
     .stats {
