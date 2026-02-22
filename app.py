@@ -25,7 +25,6 @@ def list_catches():
 
     # Page size logic (cookie persistence)
     page_size_param = request.args.get("page_size")
-
     if page_size_param:
         page_size = int(page_size_param)
     else:
@@ -33,48 +32,47 @@ def list_catches():
 
     offset = (page - 1) * page_size
 
-    base_query = """
-        SELECT * FROM catches
-        WHERE species ILIKE %s OR location ILIKE %s
-    """
+    # --- BASE QUERY ---
+    base_query = "SELECT * FROM catches"
+    count_query = "SELECT COUNT(*) FROM catches"
+    params = []
+    count_params = []
 
-    order_clause = "ORDER BY catch_date DESC"
+    # --- SEARCH FILTER ---
+    if search:
+        base_query += " WHERE species ILIKE %s OR location ILIKE %s"
+        count_query += " WHERE species ILIKE %s OR location ILIKE %s"
+        params.extend([f"%{search}%", f"%{search}%"])
+        count_params.extend([f"%{search}%", f"%{search}%"])
+
+    # --- SORTING ---
+    order_clause = " ORDER BY catch_date DESC"
 
     if sort == "date_asc":
-        order_clause = "ORDER BY catch_date ASC"
+        order_clause = " ORDER BY catch_date ASC"
     elif sort == "species":
-        order_clause = "ORDER BY species ASC"
+        order_clause = " ORDER BY species ASC"
     elif sort == "weight_desc":
-        order_clause = "ORDER BY weight_lbs DESC NULLS LAST"
+        order_clause = " ORDER BY weight_lbs DESC NULLS LAST"
 
+    # --- FINAL QUERY ---
     final_query = f"""
         {base_query}
         {order_clause}
         LIMIT %s OFFSET %s
     """
 
+    params.extend([page_size, offset])
+
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute(
-        final_query,
-        (f"%{search}%", f"%{search}%", page_size, offset),
-    )
-
+    cur.execute(final_query, params)
     catches = cur.fetchall()
 
-    cur.execute("SELECT COALESCE(AVG(weight_lbs), 0) FROM catches")
-    avg_weight = cur.fetchone()[0]
-
-    cur.execute("SELECT COALESCE(MAX(weight_lbs), 0) FROM catches")
-    max_weight = cur.fetchone()[0]
-
-    cur.execute("SELECT COUNT(*) FROM catches;")
+    # Filtered total count (IMPORTANT FIX)
+    cur.execute(count_query, count_params)
     total_records = cur.fetchone()[0]
-
-    # Clean formatting
-    avg_weight = round(float(avg_weight), 2)
-    max_weight = float(max_weight)
 
     cur.close()
     conn.close()
@@ -89,7 +87,6 @@ def list_catches():
         sort=sort,
     ))
 
-    # Store page size in cookie for 30 days
     response.set_cookie("page_size", str(page_size), max_age=30 * 24 * 60 * 60)
 
     return response

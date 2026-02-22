@@ -115,6 +115,33 @@
         outline: 2px solid #aee9ff;
     }
 
+    .controls input {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-weight: 500;
+}
+
+.controls input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.controls button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.25);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.controls button:hover {
+    background: rgba(255,255,255,0.35);
+}
+
     /* GRID */
     .cards {
         display: grid;
@@ -287,11 +314,28 @@
 </div>
 
 <div class="controls">
-    <form method="get" style="display:flex; align-items:center; gap:10px;">
+    <form method="get" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+
+        <!-- Search Bar -->
+        <input type="text" 
+            name="search"
+            placeholder="Search species or location..."
+            value="{{ search if search else '' }}">
+
+        <!-- Sort Dropdown -->
+        <select name="sort">
+            <option value="">Sort By</option>
+            <option value="date_desc" {{ "selected" if sort == "date_desc" else "" }}>Newest First</option>
+            <option value="date_asc" {{ "selected" if sort == "date_asc" else "" }}>Oldest First</option>
+            <option value="species_asc" {{ "selected" if sort == "species_asc" else "" }}>Species A-Z</option>
+            <option value="weight_desc" {{ "selected" if sort == "weight_desc" else "" }}>Heaviest First</option>
+        </select>
+
+        <!-- Page Size -->
         <label>
             Show
-            <select name="page_size" onchange="this.form.submit()">
-                <option value="5" {{ "selected" if page_size == 5 else "" }}>5</option>
+            <select name="page_size">
+                option value="5" {{ "selected" if page_size == 5 else "" }}>5</option>
                 <option value="10" {{ "selected" if page_size == 10 else "" }}>10</option>
                 <option value="20" {{ "selected" if page_size == 20 else "" }}>20</option>
                 <option value="50" {{ "selected" if page_size == 50 else "" }}>50</option>
@@ -299,8 +343,8 @@
             per page
         </label>
 
-        <input type="hidden" name="search" value="{{ search }}">
-        <input type="hidden" name="sort" value="{{ sort }}">
+        <button type="submit">Apply</button>
+
     </form>
 
     <p>
