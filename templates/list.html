@@ -18,11 +18,25 @@
 
     h1 {
         text-align: center;
-        margin-bottom: 20px;
-        font-size: 2.8rem;
-        font-weight: 700;
+        margin-bottom: 25px;
+        font-size: 3rem;
+        font-weight: 800;
         letter-spacing: 1px;
-        color: white;
+
+        background: linear-gradient(90deg, #ffffff, #aee9ff, #4facfe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+    .subtitle {
+        text-align: center;
+        margin-top: -10px;
+        margin-bottom: 35px;
+        font-size: 1rem;
+        opacity: 0.85;
+        color: rgba(255,255,255,0.9);
+        letter-spacing: 0.5px;
     }
 
     .app-title {
@@ -67,16 +81,15 @@
     }
 
     .top-bar a:hover {
-        background: rgba(255,255,255,0.2);
+        background: rgb(255, 255, 255);
     }
 
     /* CONTROLS */
     .controls {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
         margin-bottom: 30px;
-        flex-wrap: wrap;
         gap: 15px;
 
         padding: 15px 20px;
@@ -86,8 +99,14 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
+    .controls form {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
         .controls p {
-        color: rgba(255,255,255,0.25);
+        color: rgb(255, 255, 255, 0.9);
         font-weight: 500;
     }
 
@@ -296,7 +315,8 @@
 </head>
 <body>
 
-<h1>Fish Collection Manager</h1>
+<h1>Fish Catch Manager</h1>
+<p class="subtitle">Track your catches.</p>
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -309,8 +329,8 @@
 {% endwith %}
 
 <div class="top-bar">
-    <a href="/new">➕ Add Catch</a> |
-    <a href="/stats">📊 Stats</a>
+    <a href="/new">Add Catch</a> |
+    <a href="/stats">Stats</a>
 </div>
 
 <div class="controls">
