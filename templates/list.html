@@ -338,33 +338,36 @@
 </div>
 
 <div class="controls">
-    <form id="filterForm" method="get" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <form method="get" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
 
         <!-- Search Bar -->
-        <input id="searchInput" type="text" 
+        <input type="text" 
             name="search"
             placeholder="Search species or location..."
             value="{{ search if search else '' }}">
 
         <!-- Sort Dropdown -->
-        <select name="sort" onchange="this.form.submit()">
+        <select name="sort">
+            <option value="">Sort By</option>
             <option value="date_desc" {{ "selected" if sort == "date_desc" else "" }}>Newest First</option>
             <option value="date_asc" {{ "selected" if sort == "date_asc" else "" }}>Oldest First</option>
-            <option value="species" {{ "selected" if sort == "species" else "" }}>Species A-Z</option>
+            <option value="species_asc" {{ "selected" if sort == "species_asc" else "" }}>Species A-Z</option>
             <option value="weight_desc" {{ "selected" if sort == "weight_desc" else "" }}>Heaviest First</option>
         </select>
 
         <!-- Page Size -->
         <label>
             Show
-            <select name="page_size" onchange="this.form.submit()">
-                <option value="5" {{ "selected" if page_size == 5 else "" }}>5</option>
+            <select name="page_size">
+                option value="5" {{ "selected" if page_size == 5 else "" }}>5</option>
                 <option value="10" {{ "selected" if page_size == 10 else "" }}>10</option>
                 <option value="20" {{ "selected" if page_size == 20 else "" }}>20</option>
                 <option value="50" {{ "selected" if page_size == 50 else "" }}>50</option>
             </select>
             per page
         </label>
+
+        <button type="submit">Apply</button>
 
     </form>
 
