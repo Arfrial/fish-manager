@@ -1,7 +1,7 @@
 ## Deployment & Infrastructure
 
 ### Domain
-- **Domain Name:** anthonyfrial.dev
+- **Domain Name:** anthonyfrial.dev, https://fish-manager-9mqi.onrender.com/
 - **Registrar:** NameCheap
 
 The domain is configured to point to the Render web service using DNS A records.
