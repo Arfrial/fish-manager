@@ -9,7 +9,7 @@ body{
 font-family:'Segoe UI',sans-serif;
 margin:0;
 
-background-image:url("/static/img/topo-bg.png");
+background-image:url("/static/img/topo-bg.jpg");
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
@@ -31,6 +31,54 @@ width:100%;
 height:100%;
 background:rgba(255,255,255,0.85);
 z-index:-1;
+}
+
+/* Animated gradient blobs */
+
+.gradient-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:-2;
+}
+
+.blob{
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+filter:blur(150px);
+opacity:.25;
+animation:floatBlob 18s infinite ease-in-out;
+}
+
+.blob1{
+background:radial-gradient(circle,#2a5298,transparent 70%);
+top:-150px;
+left:-150px;
+}
+
+.blob2{
+background:radial-gradient(circle,#5f8df7,transparent 70%);
+bottom:-150px;
+right:-150px;
+animation-delay:8s;
+}
+
+@keyframes floatBlob{
+0%{
+transform:translate(0px,0px) scale(1);
+}
+50%{
+transform:translate(60px,-40px) scale(1.1);
+}
+100%{
+transform:translate(0px,0px) scale(1);
+}
 }
 
 .top-accent{
@@ -330,6 +378,11 @@ transform:translateY(0);
 </head>
 
 <body>
+
+<div class="gradient-bg">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+</div>
 
 <div class="top-accent"></div>
 <nav class="navbar">
