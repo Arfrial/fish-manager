@@ -4,92 +4,260 @@
 <title>Anthony Frialde | Portfolio</title>
 
 <style>
-body{
-    font-family:Segoe UI, sans-serif;
-    margin:0;
-    padding:60px;
-    color:white;
 
-    background:radial-gradient(circle at 20% 30%, #4facfe 0%, transparent 40%),
-               radial-gradient(circle at 80% 70%, #00c6ff 0%, transparent 40%),
-               linear-gradient(135deg,#1e3c72,#2a5298);
+body{
+font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:60px;
+background:#f5f6f8;
+color:#333;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
 }
 
 h1{
-    text-align:center;
-    font-size:3rem;
-    margin-bottom:10px;
+font-size:3rem;
+margin-bottom:10px;
+text-align:center;
+color:#222;
 }
 
 .subtitle{
-    text-align:center;
-    opacity:.8;
-    margin-bottom:60px;
+text-align:center;
+color:#666;
+margin-bottom:50px;
 }
 
+.section{
+margin-bottom:60px;
+}
+
+.section h2{
+margin-bottom:20px;
+border-bottom:2px solid #e5e5e5;
+padding-bottom:8px;
+color:#222;
+}
+
+.bio{
+line-height:1.6;
+font-size:1.05rem;
+color:#555;
+}
+
+
+/* PROJECT CARDS */
+
 .projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:30px;
-    max-width:1000px;
-    margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 }
 
 .card{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(14px);
-    padding:30px;
-    border-radius:16px;
-    box-shadow:0 12px 30px rgba(0,0,0,.25);
-    text-align:center;
-    transition:.2s;
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.2s;
 }
 
 .card:hover{
-    transform:translateY(-6px);
+transform:translateY(-4px);
+box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
-.card h2{
-    margin-bottom:10px;
+.card h3{
+margin-bottom:10px;
+color:#222;
 }
 
 .card p{
-    opacity:.85;
+color:#666;
 }
 
 .card a{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 18px;
-    border-radius:8px;
-    background:#4facfe;
-    color:white;
-    text-decoration:none;
-    font-weight:600;
+display:inline-block;
+margin-top:12px;
+padding:8px 16px;
+border-radius:8px;
+background:#2a5298;
+color:white;
+text-decoration:none;
+font-weight:600;
 }
+
+/* SKILLS */
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:12px;
+}
+
+.skill{
+background:white;
+padding:10px;
+border-radius:8px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+
+/* EXPERIENCE */
+
+.section p{
+color:#555;
+line-height:1.6;
+}
+
+
+/* CONTACT */
+
+.contact a{
+color:#2a5298;
+text-decoration:none;
+}
+
+.contact a:hover{
+text-decoration:underline;
+}
+
+
+/* FOOTER */
+
+.footer{
+margin-top:60px;
+text-align:center;
+color:#777;
+font-size:.9rem;
+}
+
 </style>
 
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>Anthony Frialde</h1>
 <p class="subtitle">
-Clemson University • Software Developer
+Computer Information Systems • Clemson University • Expected Graduation 2027
 </p>
+
+
+<div class="section">
+
+<h2>About Me</h2>
+
+<p class="bio">
+My name is Anthony Frialde and I am currently studying Computer Information Systems at Clemson University. 
+I am interested in software development, cloud systems, and emerging technologies such as artificial intelligence. 
+Outside of technology, I enjoy spending time outdoors fishing and exploring nature. 
+I am currently in my senior year and expect to graduate in Fall 2027.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h2>Projects</h2>
 
 <div class="projects">
 
 <div class="card">
-<h2>Fish Collection Manager</h2>
-<p>Track and analyze fishing catches with statistics and images.</p>
+<h3>Fish Collection Manager</h3>
+<p>A web application that allows users to record and manage fishing catches with search, statistics, and image tracking.</p>
 <a href="/fish">Open Project</a>
 </div>
 
 <div class="card">
-<h2>Battleship Game</h2>
-<p>Multiplayer battleship game built with APIs.</p>
+<h3>Battleship Game</h3>
+<p>A browser based battleship-style game developed as part of a software development project.</p>
 <a href="/battleship">Coming Soon</a>
+</div>
+
+<div class="card">
+<h3>Go-Back-N Network Protocol</h3>
+<p>A Python implementation of the Go-Back-N reliable data transfer protocol using simulated network conditions.</p>
+</div>
+
+<div class="card">
+<h3>EVCSS System Design</h3>
+<p>A systems analysis project designing an Electric Vehicle Charging Station System including UML diagrams and architecture planning.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>Skills</h2>
+
+<div class="skills">
+
+<div class="skill">SDLC</div>
+<div class="skill">Artificial Intelligence</div>
+<div class="skill">AWS</div>
+<div class="skill">API Development</div>
+<div class="skill">Scrum / Agile</div>
+<div class="skill">Python</div>
+<div class="skill">C++</div>
+<div class="skill">JavaScript</div>
+<div class="skill">HTML & CSS</div>
+<div class="skill">PostgreSQL</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>Experience</h2>
+
+<p>
+<strong>Administrative Assistant — Medical Associates of Anderson</strong><br>
+May 2020 – Present<br>
+• Assisted with administrative tasks including document organization and filing.<br>
+• Served as the IT helpdesk contact for device and technical issues.<br>
+• Worked independently while supporting a small business environment.
+</p>
+
+<br>
+
+<p>
+<strong>Ingles Markets Associate</strong><br>
+April 2021 – August 2021<br>
+• Assisted customers and handled checkout operations.<br>
+• Worked with team members to complete daily tasks efficiently.
+</p>
+
+</div>
+
+
+<div class="section contact">
+
+<h2>Contact</h2>
+
+<p>Email: <a href="mailto:anthonyrfrialde@gmail.com">anthonyrfrialde@gmail.com</a></p>
+
+<p>GitHub: <a href="https://github.com/arfrial" target="_blank">github.com/arfrial</a></p>
+
+<p>LinkedIn: Add your LinkedIn link here</p>
+
+</div>
+
+
+<div class="footer">
+Anthony Frialde • Portfolio
 </div>
 
 </div>
