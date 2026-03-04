@@ -18,6 +18,10 @@ background-attachment:fixed;
 color:#333;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body::before{
 content:"";
 position:fixed;
@@ -40,6 +44,7 @@ display:flex;
 align-items:center;
 gap:10px;
 font-weight:700;
+font-size:1.1rem;
 color:#222;
 }
 
@@ -55,7 +60,8 @@ object-fit:cover;
 .navbar{
 position:sticky;
 top:0;
-background:white;
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(10px);
 border-bottom:1px solid #eee;
 z-index:100;
 }
@@ -101,9 +107,31 @@ width:100%;
 /* HERO */
 
 .hero{
+position:relative;
 text-align:center;
-padding:80px 20px 40px 20px;
+padding:100px 20px 60px 20px;
 animation:fadeUp 1s ease;
+overflow:hidden;
+}
+
+/* blue glow behind hero */
+
+.hero-glow{
+position:absolute;
+top:50%;
+left:50%;
+width:700px;
+height:700px;
+
+background:radial-gradient(circle,
+rgba(42,82,152,0.25) 0%,
+rgba(42,82,152,0.15) 40%,
+rgba(42,82,152,0.05) 60%,
+transparent 70%);
+
+transform:translate(-50%,-50%);
+filter:blur(80px);
+z-index:-1;
 }
 
 .profile{
@@ -119,8 +147,9 @@ margin-bottom:25px;
 }
 
 .hero h1{
-font-size:2.8rem;
-margin-bottom:10px;
+font-size:3.2rem;
+font-weight:700;
+letter-spacing:-0.02em;
 }
 
 .highlight{
@@ -323,6 +352,8 @@ transform:translateY(0);
 <!-- HERO SECTION -->
 
 <section class="hero">
+
+<div class="hero-glow"></div>
 
 <img src="/static/img/profile.jpg" class="profile">
 
