@@ -34,35 +34,68 @@ height:100%;
 background:rgba(255,255,255,0.65);
 z-index:-2;
 }
-
+/* remove .featured when going back to normal */
 .featured-card{
+position:relative;
+height:260px;
 display:flex;
 align-items:center;
-justify-content:space-between;
-gap:20px;
+border-radius:10px;
+overflow:hidden;
 text-decoration:none;
-color:inherit;
+color:white;
+background-image:url("/static/img/battleship-preview.PNG");
+background-size:cover;
+background-position:center;
 cursor:pointer;
 }
 
-.featured-text{
-flex:1;
+/* dark overlay for readability */
+
+.featured-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(
+rgba(0,0,0,0.75),
+rgba(0,0,0,0.55)
+);
 }
 
-.featured-img{
-width:220px;
-border-radius:6px;
+/* content sits above overlay */
+
+.featured-content{
+position:relative;
+z-index:2;
+padding:30px;
+max-width:520px;
 }
 
 .featured-card h4{
+opacity:0.85;
 margin-bottom:6px;
-opacity:0.7;
-font-weight:normal;
+}
+
+.project-buttons{
+display:flex;
+gap:14px;
+margin-top:12px;
+align-items:center;
+}
+
+.github-link{
+padding:6px 10px;
+background:#24292e;
+color:white;
+border-radius:4px;
+text-decoration:none;
+font-size:14px;
+}
+
+.github-link:hover{
+background:black;
 }
 
 .project-link{
-display:inline-block;
-margin-top:8px;
 font-weight:600;
 }
 
@@ -466,12 +499,11 @@ software projects, and cloud systems.
 </p>
 
 <!-- FEATURED PROJECT (shows before scrolling) -->
-
-<div class="container">
-
 <a href="/battleship" class="card featured-card">
 
-<div class="featured-text">
+<div class="featured-overlay"></div>
+
+<div class="featured-content">
 
 <h4>Featured Project</h4>
 
@@ -482,11 +514,20 @@ An interactive browser-based battleship game with AI opponents,
 sound effects, animated UI, and multiple difficulty levels.
 </p>
 
+<div class="project-buttons">
+
 <span class="project-link">Play Game →</span>
+
+<a href="https://github.com/Arfrial/ship-sink"
+class="github-link"
+target="_blank"
+onclick="event.stopPropagation()">
+View Code
+</a>
 
 </div>
 
-<img src="/static/img/battleship-preview.PNG" class="featured-img">
+</div>
 
 </a>
 <!-- this is where I need to delete to return it back to original state-->
