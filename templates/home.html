@@ -36,67 +36,61 @@ z-index:-2;
 }
 /* remove .featured when going back to normal */
 .featured-card{
-position:relative;
-height:260px;
-display:flex;
-align-items:center;
-border-radius:10px;
-overflow:hidden;
-text-decoration:none;
-color:white;
 background-image:url("/static/img/battleship-preview.PNG");
 background-size:cover;
 background-position:center;
-cursor:pointer;
+color:white;
+position:relative;
+overflow:hidden;
 }
 
 /* dark overlay for readability */
 
-.featured-overlay{
+.featured-card::before{
+content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(
-rgba(0,0,0,0.75),
-rgba(0,0,0,0.55)
-);
+background:rgba(0,0,0,0.65);
 }
-
-/* content sits above overlay */
 
 .featured-content{
 position:relative;
 z-index:2;
-padding:30px;
-max-width:520px;
 }
 
-.featured-card h4{
-opacity:0.85;
+.featured-label{
+opacity:0.8;
 margin-bottom:6px;
 }
 
-.project-buttons{
+.featured-buttons{
 display:flex;
-gap:14px;
+gap:12px;
 margin-top:12px;
-align-items:center;
 }
 
-.github-link{
-padding:6px 10px;
-background:#24292e;
+.play-btn{
+background:#4f8cff;
+padding:8px 14px;
+border-radius:5px;
 color:white;
-border-radius:4px;
 text-decoration:none;
-font-size:14px;
 }
 
-.github-link:hover{
+.github-btn{
+background:#24292e;
+padding:8px 14px;
+border-radius:5px;
+color:white;
+text-decoration:none;
+}
+
+.play-btn:hover{
+background:#3a6ed6;
+}
+
+.github-btn:hover{
 background:black;
-}
-
-.project-link{
-font-weight:600;
 }
 
 /* Animated gradient blobs */
@@ -499,37 +493,34 @@ software projects, and cloud systems.
 </p>
 
 <!-- FEATURED PROJECT (shows before scrolling) -->
-<a href="/battleship" class="card featured-card">
-
-<div class="featured-overlay"></div>
+<div class="card featured-card">
 
 <div class="featured-content">
 
-<h4>Featured Project</h4>
+<h4 class="featured-label">Featured Project</h4>
 
-<h3>Ship Sinkers</h3>
+<h3>SHIP SINKERS</h3>
 
 <p>
-An interactive browser-based battleship game with AI opponents,
+An interactive browser-based Battleship game with AI opponents,
 sound effects, animated UI, and multiple difficulty levels.
 </p>
 
-<div class="project-buttons">
+<div class="featured-buttons">
 
-<span class="project-link">Play Game →</span>
+<a href="/battleship" class="play-btn">Play Game</a>
 
 <a href="https://github.com/Arfrial/ship-sink"
-class="github-link"
 target="_blank"
-onclick="event.stopPropagation()">
-View Code
+class="github-btn">
+GitHub
 </a>
 
 </div>
 
 </div>
 
-</a>
+</div>
 <!-- this is where I need to delete to return it back to original state-->
 </section>
 
